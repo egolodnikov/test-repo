@@ -62,7 +62,29 @@ function init() {
         drawing.redraw(coordinates);
     }
 
+    function deleteEven(){
+        var x = document.getElementById("text")
+        var tmp
+        for (var i = 0; i<x.length; i++){
+            if(i % 2 == 0){
+                tmp.push(x[i])
+            }
+        }
+        var y = document.getElementById("outDeleteEven")
+        y.value = tmp
+
+    }
+
+    function statistic(){
+        var x = document.getElementById("text")
+        var tmp = x.value.length
+        var y = document.getElementById("outStatistic")
+        y.value = tmp
+    }
+
     const drawing = new Drawing('cnvDraw');
     const timer = setInterval(update, 10);
-    // window.addEventListener('resize', update);
+    document.getElementById("statistic").addEventListener('click', statistic, true);
+    document.getElementById("deleteEven").addEventListener('click', deleteEven, true);
+
 }
