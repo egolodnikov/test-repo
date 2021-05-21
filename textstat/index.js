@@ -8,7 +8,69 @@
  * @param {object} event - Event class
  */
 function onStatisticsClicked(event) {
-    //TODO: Implement this function
+    var text = document.getElementById('text').value.toLowerCase()
+    var length = document.getElementById('text').value.length
+    var valCharCount = document.getElementById('valCharCount')
+    var valSpacesCount = document.getElementById('valSpacesCount')
+    var valVowelsCount = document.getElementById('valVowelsCount')
+    var valConsonantsCount = document.getElementById('valConsonantsCount')
+    var valWordsCount = document.getElementById('valWordsCount')
+    var tmp
+
+    function countChars(){
+        tmp = length;
+        valCharCount.value = tmp;
+    }
+
+    function countSpaces(){
+        var counter = 0;
+        for(var i=0; i<length; i++){
+            if (' ' === text[i]){
+                counter++;
+            }
+        }
+        valSpacesCount.value = counter;
+    }
+
+    function countVowels(){
+        var counter = 0;
+        vowels = 'aeiouy'
+        for(var i=0; i<length; i++){
+            for(var j=0; j<vowels.length; j++){
+                if (vowels[j] === text[i]){
+                    counter++;
+                }
+            }
+        }
+        valVowelsCount.value = counter;
+    }
+
+    function countConsonants(){
+        var counter = 0;
+        consonants = 'qwrtpsdfghjklzxcvbnm'
+        for(var i=0; i<length; i++){
+            for(var j=0; j<consonants.length; j++){
+                if (consonants[j] === text[i]){
+                    counter++;
+                }
+            }
+        }
+        valConsonantsCount.value = counter;
+    }
+
+    function countWords(){
+        var counter = 0;
+        var splitWords = text.split(' ')
+        valWordsCount.value = splitWords.length;
+    }
+
+    if(event.type == 'click'){
+        countChars()
+        countSpaces()
+        countVowels()
+        countConsonants()
+        countWords()
+    }
     console.log('onStatisticsClicked called');
 }
 
@@ -18,7 +80,24 @@ function onStatisticsClicked(event) {
  * @param {object} event - Event class
  */
 function onRemoveWordsClicked(event) {
-    //TODO: Implement this function
+    var valOddWords = document.getElementById('valOddWords')
+    var text = document.getElementById('text').value
+    var tmp = ''
+
+    function createOddWords(){
+        var counter = 0;
+        var splitWords = text.split(' ')
+
+        for(var i=0; i<splitWords.length; i++){
+            if (i % 2 == 0){
+               tmp += splitWords[i] + ' '
+            }
+        }
+    }
+    if (event.type == 'click'){
+        createOddWords()
+    }
+    valOddWords.value = tmp
     console.log('onRemoveWordsClicked called');
 }
 
